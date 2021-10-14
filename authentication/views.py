@@ -69,3 +69,9 @@ class SignUpView(generics.GenericAPIView):
             "user": UserSerializer(user, context=self.get_serializer_context()).data,
             "message": "Usuario creado correctamente. Ahora puedes iniciar sesión",
         })
+
+from django.core.files.base import ContentFile
+
+def upload_photo(request):
+    print(request.POST)
+    return Response({'msg':'Petición recibida'})
