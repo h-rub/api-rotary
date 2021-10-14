@@ -1,5 +1,5 @@
 from django.urls import path, include
-from .views import LoginView, LogoutView, SignUpView
+from .views import LoginView, LogoutView, SignUpView, upload_photo
 
 urlpatterns = [
     # Auth views
@@ -12,5 +12,5 @@ urlpatterns = [
     path('auth/logout/',
          LogoutView.as_view(), name='auth_logout'),
 
-    path('/profile/upload_photo', name="upload_photo")
+    path('/profile/upload_photo', upload_photo, name="upload_photo")
 ]
