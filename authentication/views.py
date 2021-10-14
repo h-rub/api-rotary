@@ -1,3 +1,5 @@
+import json
+from django.http.response import HttpResponse
 from authentication.serializer import RegisterSerializer, UserSerializer
 from django.shortcuts import render
 
@@ -74,4 +76,5 @@ from django.core.files.base import ContentFile
 
 def upload_photo(request):
     print(request.POST)
-    return Response({'msg':'Petición recibida'})
+    responseData = {"msg":f"Photo has been uploaded"}
+    return HttpResponse(json.dumps(responseData), content_type="application/json")
