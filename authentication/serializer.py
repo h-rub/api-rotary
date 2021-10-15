@@ -1,5 +1,5 @@
 from rest_framework import  serializers
-from authentication.models import CustomUser
+from authentication.models import CustomUser, Profile
 
 # Register serializer
 class RegisterSerializer(serializers.ModelSerializer):
@@ -27,4 +27,17 @@ class RegisterSerializer(serializers.ModelSerializer):
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = CustomUser
+        fields = '__all__'
+
+class UpdateProfileSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CustomUser
+        fields = ['email','picture']
+
+class UserProfileSerializer(serializers.ModelSerializer):
+
+    user = UserSerializer()
+
+    class Meta:
+        model = Profile
         fields = '__all__'

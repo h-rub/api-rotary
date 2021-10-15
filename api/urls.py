@@ -21,6 +21,9 @@ from rest_framework import routers
 
 from rest_framework.authtoken import views
 
+from django.conf import settings
+from django.conf.urls.static import static
+
 
 # Api router
 router = routers.DefaultRouter()
@@ -34,6 +37,6 @@ urlpatterns = [
 
     path('api/v1/', include(('tasks.urls', 'tasks'))),
 
-    path('api/v1/generate_token/', views.obtain_auth_token)
+    path('api/v1/generate_token/', views.obtain_auth_token),
     
-]
+] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

@@ -1,19 +1,23 @@
 import json
 from django.http.response import HttpResponse
-from authentication.serializer import RegisterSerializer, UserSerializer
+from rest_framework.decorators import action
+from authentication.serializer import RegisterSerializer, UpdateProfileSerializer, UserProfileSerializer, UserSerializer
 from django.shortcuts import render
 
 # Create your views here.
 from django.contrib.auth import authenticate, login, logout
 from django.views.decorators.csrf import csrf_exempt
 from authentication.authTokenRotary import CsrfExemptTokenAuthentication
-from rest_framework import status
+from rest_framework import status, viewsets
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework import generics, permissions, mixins
 from rest_framework.authtoken.models import Token
-from authentication.models import CustomUser
+from rest_framework.parsers import FormParser, MultiPartParser, JSONParser
+from authentication.models import CustomUser, Profile
+
+from rest_framework.viewsets import ModelViewSet
 
 class LoginView(generics.GenericAPIView):
     authentication_classes = (CsrfExemptTokenAuthentication,)
@@ -72,9 +76,43 @@ class SignUpView(generics.GenericAPIView):
             "message": "Usuario creado correctamente. Ahora puedes iniciar sesión",
         })
 
+        
 from django.core.files.base import ContentFile
 
 def upload_photo(request):
     print(request.POST)
     responseData = {"msg":f"Photo has been uploaded"}
     return HttpResponse(json.dumps(responseData), content_type="application/json")
+
+from rest_framework.views import APIView
+from rest_framework.parsers import MultiPartParser
+from rest_framework.decorators import parser_classes
+
+@parser_classes((MultiPartParser, ))
+class UploadFileAndJson(APIView):
+
+    def post(self, request, format=None):
+        thumbnail = request.FILES["file"]
+        user = CustomUser.objects.filter(pk = request.POST['id_user']).update(picture=thumbnail)
+        print(thumbnail)
+        print(user)
+        return HttpResponse(json.dumps({"msg":"ok"}))
+
+
+# class ProfileView(APIView):
+#     queryset = UploadImageTest.objects.all()
+#     serializer_class = ImageSerializer
+
+#     def post(self, request, *args, **kwargs):
+#         file = request.data['file']
+#         id_user = request.data['id_user']
+#         image = UploadImageTest.objects.filter(image=file)
+#         return HttpResponse(json.dumps({'message': "Uploaded"}), status=200)
+
+class CustomUserView(ModelViewSet):
+    serializer_class = UserSerializer
+    queryset = CustomUser.objects.all()
+
+class UserProfileView(ModelViewSet):
+    serializer_class = UserProfileSerializer
+    queryset = Profile.objects.all()
