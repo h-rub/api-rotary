@@ -30,6 +30,6 @@ class CustomUser(AbstractUser):
 class Profile(models.Model):
     user = models.OneToOneField(CustomUser, related_name='user_profile', on_delete=models.CASCADE)
     biography = models.TextField(blank=True)
-    profile_picture = models.ImageField(upload_to='profile_pics', 
+    profile_picture = models.ImageField(max_length=300,upload_to='profile_pics', 
             blank=True, 
             null=True)
