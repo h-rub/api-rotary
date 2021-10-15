@@ -141,5 +141,5 @@ class ProfilePictureView(APIView):
         url_image = new_picture.profile_picture
         return Response({
             "msg":"Imagen actualizada correctamente",
-            "url_picture": url_image
+            "url_picture": str(url_image)
         })
