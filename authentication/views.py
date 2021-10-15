@@ -138,7 +138,7 @@ class ProfilePictureView(APIView):
         profile.profile_picture = picture
         profile.save()
         new_picture = Profile.objects.get(user_id=id)
-        url_image = new_picture.picture
+        url_image = new_picture.profile_picture
         return Response({
             "msg":"Imagen actualizada correctamente",
             "url_picture": url_image
