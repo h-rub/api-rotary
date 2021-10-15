@@ -1,7 +1,7 @@
 import json
 from django.http.response import HttpResponse
 from rest_framework.decorators import action
-from authentication.serializer import RegisterSerializer, UpdateProfileSerializer, UserProfileSerializer, UserSerializer
+from authentication.serializer import PhotoProfileSerializer, RegisterSerializer, UpdateProfileSerializer, UserProfileSerializer, UserSerializer
 from django.shortcuts import render
 
 # Create your views here.
@@ -116,3 +116,27 @@ class CustomUserView(ModelViewSet):
 class UserProfileView(ModelViewSet):
     serializer_class = UserProfileSerializer
     queryset = Profile.objects.all()
+
+class ProfilePictureView(APIView):
+    def get(self, request, id):
+        print(request.data)
+        profile = Profile.objects.get(user_id=id)
+        bio = profile.biography
+        id_user = profile.user_id
+        pic = profile.profile_picture
+        print(pic)
+        #serializer = PhotoProfileSerializer(profile, many=True)
+        return Response({
+            "id_user" : id_user,
+            "bio": bio,
+            "picture": str(pic)
+        })
+    
+    def post(self, request, id):
+        picture = request.data['file']
+        profile = Profile.objects.get(user_id=id)
+        profile.profile_picture = picture
+        profile.save()
+        return Response({
+            "msg":"Imagen actualizada correctamente"
+        })
