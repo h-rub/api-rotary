@@ -8,7 +8,7 @@ class TaskSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Task
-        fields = ['_id_task', 'title', 'description', 'is_completed', 'due_date', 'user_asigned_to']
+        fields = ['_id_task', 'title', 'description', 'is_completed', 'due_date', 'user_asigned_to', 'time_date']
 
     def get_full_name_asigned_to(self, Task):
         first_name = Task.asigned_to.first_name
