@@ -10,6 +10,7 @@ class Task(models.Model):
     description = models.CharField(max_length=200, blank=True)
     is_completed = models.BooleanField(default=False)
     due_date = models.DateField(blank=True, null=True)
+    time_date = models.TimeField(blank=True, null=True)
 
     asigned_to = models.ForeignKey(CustomUser, on_delete=DO_NOTHING)
 
