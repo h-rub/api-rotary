@@ -146,6 +146,7 @@ MEDIA_URL = '/media/' # 'http://myhost:port/media/'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+TIME_INPUT_FORMATS = ('%I:%M %p',)
 
 # Model of authetntication
 AUTH_USER_MODEL = "authentication.CustomUser"
