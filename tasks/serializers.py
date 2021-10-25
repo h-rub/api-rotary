@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from tasks.models import Task
-from authentication.models import CustomUser
+from authentication.models import CustomUser, Profile
 
 class TaskSerializer(serializers.ModelSerializer):
 
@@ -13,6 +13,8 @@ class TaskSerializer(serializers.ModelSerializer):
     def get_full_name_asigned_to(self, Task):
         _id = Task.asigned_to.pk
         user = CustomUser.objects.get(pk=_id)
+        profile = Profile.objects.get(user=_id)
+        picture = profile.profile_picture
         first_name = Task.asigned_to.first_name
         last_name = Task.asigned_to.last_name
-        return f"{first_name} {last_name} {_id}"
+        return f"{first_name} {last_name} {_id} {picture}"
