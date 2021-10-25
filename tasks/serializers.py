@@ -19,8 +19,7 @@ class TaskSerializer(serializers.ModelSerializer):
         last_name = Task.asigned_to.last_name
         data = {
             "id": _id,
-            "first_name": first_name,
-            "last_name": last_name,
+            "full_name": f"{first_name} {last_name}",
             "picture": str(picture)    
         }
         return data
