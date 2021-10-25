@@ -150,5 +150,3 @@ TIME_INPUT_FORMATS = ('%I:%M %p',)
 
 # Model of authetntication
 AUTH_USER_MODEL = "authentication.CustomUser"
-import django_heroku
-django_heroku.settings(locals())
