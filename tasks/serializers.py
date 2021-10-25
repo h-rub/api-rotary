@@ -11,6 +11,8 @@ class TaskSerializer(serializers.ModelSerializer):
         fields = ['_id_task', 'title', 'description', 'is_completed', 'due_date', 'user_asigned_to', 'time_date']
 
     def get_full_name_asigned_to(self, Task):
+        _id = Task.asigned_to.pk
+        user = CustomUser.objects.get(pk=_id)
         first_name = Task.asigned_to.first_name
         last_name = Task.asigned_to.last_name
-        return f"{first_name} {last_name}"
+        return f"{first_name} {last_name} {_id}"
