@@ -14,6 +14,7 @@ class CustomUser(AbstractUser):
     email = models.EmailField(max_length=150, unique=True)
     company = models.CharField(max_length=70, blank=True)
     address = models.CharField(max_length=200, blank=True)
+    phone = models.CharField(max_length=120, blank=True)
     
     created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
