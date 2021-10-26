@@ -22,7 +22,7 @@ urlpatterns = [
 
     path('profile/upload_photo', upload_photo, name="upload_photo"),
     path('profile-pic/<int:id>', ProfilePictureView.as_view(), name="my_photo"),
-    path('members/all', MembersView.as_view(), name="members")
+    path('members/all', MembersView.as_view({'get': 'list'}), name="members")
     #path('upload', UploadFileAndJson.as_view(), name="upload"),
     #path('upload/', ProfileView.as_view(), name='upload'),
 ]
