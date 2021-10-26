@@ -170,7 +170,12 @@ class UpdateProfileView(APIView):
         return Response({
             "code": 200,
             "msg":"Perfil actualizado correctamente",
-          
+            "first_name": user.first_name,
+            "last_name": user.last_name,
+            "email": user.email,
+            "company": user.company,
+            "address": user.address,
+            "biography": profile.biography
         })
 
         
