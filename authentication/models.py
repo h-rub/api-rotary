@@ -33,4 +33,4 @@ class Profile(models.Model):
     biography = models.TextField(blank=True)
     profile_picture = models.ImageField(max_length=300,upload_to='profile_pics', 
             blank=True, 
-            null=True)
+            null=True, default="profile_pics/user.png")
