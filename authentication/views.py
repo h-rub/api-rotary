@@ -147,3 +147,33 @@ class ProfilePictureView(APIView):
             "msg":"Imagen actualizada correctamente",
             "url_picture": str(url_image)
         })
+
+class UpdateProfileView(APIView):
+    def post(self, request):
+        id_user = request.data['id']
+        first_name = request.data['first_name']
+        last_name = request.data['last_name']
+        email = request.data['email']
+        company = request.data['company']
+        address = request.data['address']
+        biography = request.data['biography']
+        user = CustomUser.objects.get(pk=id_user)
+        profile = Profile.objects.get(user_id=user.pk)
+        user.first_name = first_name
+        user.last_name = last_name
+        user.email = email
+        user.company = company
+        user.address = address
+        user.save()
+        profile.biography = biography
+        profile.save()
+        return Response({
+            "code": 200,
+            "msg":"Perfil actualizado correctamente",
+          
+        })
+
+        
+
+        
+

@@ -1,5 +1,5 @@
 from django.urls import path, include
-from .views import CustomUserView, LoginView, LogoutView, MembersView, ProfilePictureView, SignUpView, UploadFileAndJson, UserProfileView, upload_photo
+from .views import CustomUserView, LoginView, LogoutView, MembersView, ProfilePictureView, SignUpView, UpdateProfileView, UploadFileAndJson, UserProfileView, upload_photo
 
 from rest_framework.routers import DefaultRouter
 
@@ -21,6 +21,7 @@ urlpatterns = [
          LogoutView.as_view(), name='auth_logout'),
 
     path('profile/upload_photo', upload_photo, name="upload_photo"),
+    path('profile/update', UpdateProfileView.as_view(), name="update_profile"),
     path('profile-pic/<int:id>', ProfilePictureView.as_view(), name="my_photo"),
     path('members/all', MembersView.as_view({'get': 'list'}), name="members")
     #path('upload', UploadFileAndJson.as_view(), name="upload"),
