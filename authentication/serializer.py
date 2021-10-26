@@ -30,6 +30,11 @@ class UserSerializer(serializers.ModelSerializer):
         model = CustomUser
         fields = '__all__'
 
+class MembersSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CustomUser
+        fields = ['pk','first_name']
+
 class UpdateProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = CustomUser

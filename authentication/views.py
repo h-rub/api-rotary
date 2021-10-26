@@ -1,7 +1,7 @@
 import json
 from django.http.response import HttpResponse
 from rest_framework.decorators import action
-from authentication.serializer import PhotoProfileSerializer, RegisterSerializer, UpdateProfileSerializer, UserProfileSerializer, UserSerializer
+from authentication.serializer import MembersSerializer, PhotoProfileSerializer, RegisterSerializer, UpdateProfileSerializer, UserProfileSerializer, UserSerializer
 from django.shortcuts import render
 
 # Create your views here.
@@ -111,6 +111,10 @@ class UploadFileAndJson(APIView):
 
 class CustomUserView(ModelViewSet):
     serializer_class = UserSerializer
+    queryset = CustomUser.objects.all()
+
+class MembersView(ModelViewSet):
+    serializer_class = MembersSerializer
     queryset = CustomUser.objects.all()
 
 class UserProfileView(ModelViewSet):
