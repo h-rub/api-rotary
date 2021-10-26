@@ -52,11 +52,11 @@ class TaskComplete(APIView):
     def post(self, request, id_task):
         #id_task = request.data['id']
         task = Task.objects.get(_id_task = id_task)
-        is_completed = bool(request.data['is_completed']);
+        is_completed = bool(request.data['is_completed'])
         task.is_completed = is_completed
         task.save()
         return Response({
             "code": 200,
-            "msg":f"Tarea con id {id_task} actualizada - Recibi {is_completed}",
+            "msg":f"Tarea con id {id_task} actualizada - Recibi {request.data['is_completed']}",
         })
         
