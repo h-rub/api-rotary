@@ -157,6 +157,7 @@ class UpdateProfileView(APIView):
         company = request.data['company']
         address = request.data['address']
         biography = request.data['biography']
+        phone = request.data['phone']
         user = CustomUser.objects.get(pk=id_user)
         profile = Profile.objects.get(user_id=user.pk)
         user.first_name = first_name
@@ -164,6 +165,7 @@ class UpdateProfileView(APIView):
         user.email = email
         user.company = company
         user.address = address
+        user.phone = phone
         user.save()
         profile.biography = biography
         profile.save()
@@ -173,6 +175,7 @@ class UpdateProfileView(APIView):
             "first_name": user.first_name,
             "last_name": user.last_name,
             "email": user.email,
+            "phone": user.phone,
             "company": user.company,
             "address": user.address,
             "biography": profile.biography
