@@ -53,7 +53,7 @@ class TaskComplete(APIView):
         #id_task = request.data['id']
         task = Task.objects.get(_id_task = id_task)
         is_completed = request.data['is_completed'];
-        task.is_completed = is_completed
+        task.is_completed = bool(is_completed)
         task.save()
         return Response({
             "code": 200,
