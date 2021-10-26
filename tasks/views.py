@@ -42,7 +42,8 @@ class CreateTask(APIView):
         description_task = request.data['description']
         deadline = request.data['deadline']
         due_time = request.data['due_time']
+        assigned_to = request.data['id_assigned_to']
         # TODO Receive user to assigned
-        task_asigned_to = CustomUser.objects.get(pk=1)
+        task_asigned_to = CustomUser.objects.get(pk=assigned_to)
         created = Task.objects.create(title = title_task, description = description_task, due_date=deadline, time_date = due_time, asigned_to=task_asigned_to)
         return Response({"msg":"Tarea recibida"}, status=status.HTTP_200_OK)
