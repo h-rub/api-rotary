@@ -47,3 +47,16 @@ class CreateTask(APIView):
         task_asigned_to = CustomUser.objects.get(pk=assigned_to)
         created = Task.objects.create(title = title_task, description = description_task, due_date=deadline, time_date = due_time, asigned_to=task_asigned_to)
         return Response({"msg":"Tarea recibida"}, status=status.HTTP_200_OK)
+
+class TaskComplete(APIView):
+    def post(self, request, id_task):
+        #id_task = request.data['id']
+        task = Task.objects.get(_id_task = id_task)
+        is_completed = request.data['is_completed'];
+        task.is_completed = is_completed
+        task.save()
+        return Response({
+            "code": 200,
+            "msg":f"Tarea con id {id_task} actualizada - Estado {task.is_completed}",
+        })
+        

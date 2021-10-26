@@ -19,6 +19,8 @@ from authentication.models import CustomUser, Profile
 
 from rest_framework.viewsets import ModelViewSet
 
+from tasks.models import Task
+
 class LoginView(generics.GenericAPIView):
     authentication_classes = (CsrfExemptTokenAuthentication,)
     serializer_class = UserSerializer
@@ -181,7 +183,7 @@ class UpdateProfileView(APIView):
             "biography": profile.biography
         })
 
-        
+
 
         
 
