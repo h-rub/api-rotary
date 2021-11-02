@@ -35,9 +35,10 @@ class MembersSerializer(serializers.ModelSerializer):
     full_name = serializers.SerializerMethodField('get_full_name')
     user_name = serializers.SerializerMethodField('get_username')
     picture = serializers.SerializerMethodField('get_profile_picture')
+    bio = serializers.SerializerMethodField('get_bio')
     class Meta:
         model = CustomUser
-        fields = ['pk','full_name','user_name','email','company','address','phone','picture']
+        fields = ['pk','first_name', 'last_name', 'full_name','user_name','email','company','address','phone','bio','picture']
 
     def get_full_name(self, CustomUser):
         full_name = CustomUser.get_full_name_user()
@@ -52,6 +53,12 @@ class MembersSerializer(serializers.ModelSerializer):
         profile = Profile.objects.get(user=_id)
         picture = profile.profile_picture
         return str(picture)
+
+    def get_bio(self, CustomUser):
+        _id = CustomUser.pk
+        profile = Profile.objects.get(user=_id)
+        bio = profile.biography
+        return str(bio)
 
 class UpdateProfileSerializer(serializers.ModelSerializer):
     class Meta:
