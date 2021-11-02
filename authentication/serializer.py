@@ -49,7 +49,7 @@ class MembersSerializer(serializers.ModelSerializer):
 
     def get_profile_picture(self, CustomUser):
         _id = CustomUser.pk
-        profile = Profile.objects.get(pk=_id)
+        profile = Profile.objects.get(user=_id)
         picture = profile.profile_picture
         return str(picture)
 
