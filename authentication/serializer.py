@@ -39,7 +39,7 @@ class MembersSerializer(serializers.ModelSerializer):
 
     def get_full_name(self, CustomUser):
         full_name = CustomUser.get_full_name_user
-        return full_name
+        return full_name['full_name']
 
 class UpdateProfileSerializer(serializers.ModelSerializer):
     class Meta:
