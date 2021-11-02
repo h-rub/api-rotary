@@ -38,7 +38,7 @@ class MembersSerializer(serializers.ModelSerializer):
         fields = ['pk','full_name']
 
     def get_full_name(self, CustomUser):
-        full_name = CustomUser.get_full_name_user
+        full_name = CustomUser.get_full_name_user()
         return full_name['full_name']
 
 class UpdateProfileSerializer(serializers.ModelSerializer):
