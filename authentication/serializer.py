@@ -47,7 +47,7 @@ class MembersSerializer(serializers.ModelSerializer):
         user_name = CustomUser.get_username()
         return user_name
 
-    def get_profile_picture(self, CustomUser, Profile):
+    def get_profile_picture(self, CustomUser):
         _id = CustomUser.pk
         profile = Profile.objects.get(pk=_id)
         picture = profile.profile_picture
