@@ -32,7 +32,7 @@ class UserSerializer(serializers.ModelSerializer):
 
 class MembersSerializer(serializers.ModelSerializer):
 
-    full_name = serializers.SerializerMethodField('get_full_name')
+    #full_name = serializers.SerializerMethodField('get_full_name')
     class Meta:
         model = CustomUser
         fields = ['pk','first_name', 'last_name']
