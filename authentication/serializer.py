@@ -33,13 +33,18 @@ class UserSerializer(serializers.ModelSerializer):
 class MembersSerializer(serializers.ModelSerializer):
 
     full_name = serializers.SerializerMethodField('get_full_name')
+    username = serializers.SerializerMethodField('get_username')
     class Meta:
         model = CustomUser
-        fields = ['pk','full_name']
+        fields = ['pk','full_name','username']
 
     def get_full_name(self, CustomUser):
         full_name = CustomUser.get_full_name_user()
         return full_name['full_name']
+    
+    def get_username(self,CustomUser):
+        username = CustomUser.get_username()
+        return username
 
 class UpdateProfileSerializer(serializers.ModelSerializer):
     class Meta:
