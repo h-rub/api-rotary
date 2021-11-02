@@ -38,8 +38,8 @@ class MembersSerializer(serializers.ModelSerializer):
         fields = ['pk','full_name']
 
     def get_full_name(self, CustomUser):
-        first_name = self.user.first_name
-        last_name = self.user.last_name
+        first_name = CustomUser.first_name
+        last_name = CustomUser.last_name
         return f"{self.first_name} {self.last_name}"
 
 class UpdateProfileSerializer(serializers.ModelSerializer):
