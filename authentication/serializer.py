@@ -35,7 +35,7 @@ class MembersSerializer(serializers.ModelSerializer):
     full_name = serializers.SerializerMethodField('get_full_name')
     class Meta:
         model = CustomUser
-        fields = ['pk','first_name', 'last_name']
+        fields = ['pk','full_name']
 
     def get_full_name(self, CustomUser):
         first_name = self.user.first_name
