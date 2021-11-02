@@ -37,7 +37,7 @@ class MembersSerializer(serializers.ModelSerializer):
     picture = serializers.SerializerMethodField('get_profile_picture')
     class Meta:
         model = CustomUser
-        fields = ['pk','full_name','user_name','picture']
+        fields = ['pk','full_name','user_name','email','company','address','phone','picture']
 
     def get_full_name(self, CustomUser):
         full_name = CustomUser.get_full_name_user()
