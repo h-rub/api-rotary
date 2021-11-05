@@ -5,7 +5,7 @@ from rest_framework import status, viewsets
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.viewsets import ModelViewSet
-from authentication.models import Profile
+from authentication.models import CustomUser, Profile
 from myclub.models import Like, Post
 
 from myclub.serializer import PostsSerializer
@@ -37,7 +37,8 @@ class SaveReaction(APIView):
     def post(self, request):
         post_id = request.data['post_id']
         liked_by = request.data['liked_by'] 
-        profile = Profile.objects.get(pk=liked_by)
+        user = CustomUser.objects.get(pk=liked_by)
+        profile = Profile.objects.get(pk=user.pk)
         post = Post.objects.get(pk=post_id)
         #is_liked = bool(request.data['is_completed'])
         exists = Like.objects.filter(liked_by=profile, post_liked=post).exists()
