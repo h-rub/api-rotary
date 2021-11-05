@@ -14,11 +14,11 @@ class PostsSerializer(serializers.ModelSerializer):
     time_ago = serializers.SerializerMethodField('get_time_ago')
 
     # TODO Is Liked By Me
-    # is_liked_by_me = serializers.SerializerMethodField('get_liked_by_me')
+    is_liked_by_me = serializers.SerializerMethodField('get_liked_by_me')
 
     class Meta:
         model = Post
-        fields = ['pk', 'profile_image', 'time_ago', 'content', 'created', 'posted_by', 'likes_count', 'comments_count', 'comments']
+        fields = ['pk', 'profile_image', 'time_ago', 'content', 'created', 'posted_by', 'is_liked_by_me', 'likes_count', 'comments_count', 'comments']
 
     def get_profile_picture(self, Post):
         _id = Post.posted_by.pk
@@ -59,7 +59,8 @@ class PostsSerializer(serializers.ModelSerializer):
         Method to get true or false if the post is liked by the user
         The id from the user logged is received on post petition
         """
-        pass
+        print(self.request)
+        return str(self.request)
 
     def get_full_name(self, Post):
         _id = Post.posted_by.user.pk

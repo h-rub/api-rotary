@@ -19,11 +19,16 @@ class GetPosts(ModelViewSet):
     serializer_class = PostsSerializer
     queryset = Post.objects.all()
 
+    def get_serializer_context(self):
+        context = super(GetPosts, self).get_serializer_context()
+        context.update({"request": self.request})
+        return context
+
 
 class CreatePost(APIView):
     def post(self, request):
         posted_by_id = request.data['id_user']
-        profile_that_posted = Profile.objects.get(pk=posted_by_id)
+        profile_that_posted = Profile.objects.get(user=posted_by_id)
         content = request.data['content']
         created = Post.objects.create(posted_by = profile_that_posted, content = content)
         return Response({"msg":"Post has been created"}, status=status.HTTP_200_OK)
