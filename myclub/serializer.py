@@ -59,9 +59,15 @@ class PostsSerializer(serializers.ModelSerializer):
         Method to get true or false if the post is liked by the user
         The id from the user logged is received on post petition
         """
-        print(self.context.get('me'))
-        import pdb; pdb.set_trace();
-        return str(self.context)
+        me = self.context['request'].GET.get('me')
+        user = CustomUser.objects.get(pk=me)
+        profile = Profile.objects.get(pk=user)
+        post = Post.pk
+        exists = Like.objects.filter(liked_by=profile, post_liked=post).exists()
+        if exists == True:
+            return True
+        else:
+            return False
 
     def get_full_name(self, Post):
         _id = Post.posted_by.user.pk
