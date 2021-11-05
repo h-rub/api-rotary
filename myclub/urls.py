@@ -1,7 +1,7 @@
 # File URLS MyClub App
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
-from .views import GetPosts, SaveReaction, ping
+from .views import CreatePost, GetPosts, SaveReaction, ping
 
 router = DefaultRouter()
 
@@ -13,5 +13,6 @@ urlpatterns = [
     path("club", ping, name="pong"),
 
     path("myclub/posts", GetPosts.as_view({'get': 'list'}), name="posts"),
-    path("myclub/posts/reaction", SaveReaction.as_view(), name="save_like" )
+    path("myclub/posts/reaction", SaveReaction.as_view(), name="save_like" ),
+    path("myclub/post/create", CreatePost.as_view(), name="create_post")
 ]
