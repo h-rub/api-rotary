@@ -38,7 +38,7 @@ class SaveReaction(APIView):
         post_id = request.data['post_id']
         liked_by = request.data['liked_by'] 
         user = CustomUser.objects.get(pk=liked_by)
-        profile = Profile.objects.get(pk=user.pk)
+        profile = Profile.objects.get(user=user.pk)
         post = Post.objects.get(pk=post_id)
         #is_liked = bool(request.data['is_completed'])
         exists = Like.objects.filter(liked_by=profile, post_liked=post).exists()
