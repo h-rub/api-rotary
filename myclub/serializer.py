@@ -60,7 +60,7 @@ class PostsSerializer(serializers.ModelSerializer):
         The id from the user logged is received on post petition
         """
         print(self.context['request'])
-        import pdb; pdb.set_trace()
+        import pdb; pdb.set_trace();
         return str(self.context['request'])
 
     def get_full_name(self, Post):
