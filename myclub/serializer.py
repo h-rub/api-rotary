@@ -60,8 +60,8 @@ class PostsSerializer(serializers.ModelSerializer):
         The id from the user logged is received on post petition
         """
         me = self.context['request'].GET.get('me')
-        #user = CustomUser.objects.get(pk=me)
-        profile = Profile.objects.get(pk=me)
+        user = CustomUser.objects.get(pk=me)
+        profile = Profile.objects.get(user=user.pk)
         post = Post.pk
         exists = Like.objects.filter(liked_by=profile, post_liked=post).exists()
         if exists == True:
