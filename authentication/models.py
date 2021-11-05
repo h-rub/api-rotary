@@ -37,3 +37,6 @@ class Profile(models.Model):
     profile_picture = models.ImageField(max_length=300,upload_to='profile_pics', 
             blank=True, 
             null=True, default="profile_pics/user.png")
+    
+    def __str__(self):
+        return f"{self.user.first_name} {self.user.last_name}"

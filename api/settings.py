@@ -45,7 +45,8 @@ INSTALLED_APPS = [
 
     # Local apps
     'authentication',
-    'tasks'
+    'tasks',
+    'myclub',
 ]
 
 REST_FRAMEWORK = {
