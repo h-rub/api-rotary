@@ -61,7 +61,7 @@ class PostsSerializer(serializers.ModelSerializer):
         """
         me = self.context['request'].GET.get('me')
         user = CustomUser.objects.get(pk=me)
-        profile = Profile.objects.get(pk=user)
+        profile = Profile.objects.get(pk=user.pk)
         post = Post.pk
         exists = Like.objects.filter(liked_by=profile, post_liked=post).exists()
         if exists == True:
