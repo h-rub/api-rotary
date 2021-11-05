@@ -54,7 +54,7 @@ class PostsSerializer(serializers.ModelSerializer):
         resp = self.convert_elapsed_seconds(seconds)
         return resp
 
-    def is_liked_by_me(self, Post):
+    def get_liked_by_me(self, Post):
         """
         Method to get true or false if the post is liked by the user
         The id from the user logged is received on post petition
