@@ -6,7 +6,8 @@ from authentication.models import Profile
 # Create your models here.
 class Post(models.Model):
     posted_by = models.ForeignKey(Profile, on_delete=DO_NOTHING)
-    content = models.CharField(blank=True, null=True, max_length=900)
+    content = models.CharField(blank=True, null=True, max_length=950)
+    
     created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
 
