@@ -59,9 +59,8 @@ class PostsSerializer(serializers.ModelSerializer):
         Method to get true or false if the post is liked by the user
         The id from the user logged is received on post petition
         """
-        print(self.context['request'])
-        import pdb; pdb.set_trace();
-        return str(self.context['request'])
+        print(self.context.get('me'))
+        return str(self.context.get('me'))
 
     def get_full_name(self, Post):
         _id = Post.posted_by.user.pk
