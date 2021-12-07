@@ -175,3 +175,4 @@ TIME_INPUT_FORMATS = ('%I:%M %p',)
 
 # Model of authetntication
 AUTH_USER_MODEL = "authentication.CustomUser"
+DATA_UPLOAD_MAX_MEMORY_SIZE = 105242880
