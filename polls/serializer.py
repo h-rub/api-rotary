@@ -21,6 +21,7 @@ class PollsSerializer(serializers.ModelSerializer):
 
     def get_options(self, Polls):
         _id = Polls.pk
-        option = Polls.__class__.objects.all().filter(poll = _id)
+        poll = Polls.objects.get(pk = _id)
+        option = Polls.__class__.objects.all().filter(poll = poll)
         data = {"id_pk": _id, "options": option}
         return data
