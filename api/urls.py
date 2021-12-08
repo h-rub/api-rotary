@@ -37,6 +37,7 @@ urlpatterns = [
 
     path('api/v1/', include(('tasks.urls', 'tasks'))),
     path('api/v1/', include(('myclub.urls', 'myclub'))),
+    path('api/v1/', include(('polls.urls', 'polls'))),
 
     path('api/v1/generate_token/', views.obtain_auth_token),
     
