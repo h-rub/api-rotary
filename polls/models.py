@@ -19,6 +19,7 @@ class Options(models.Model):
 
 class Vote(models.Model):
     voted_by = models.ForeignKey(Profile, on_delete=DO_NOTHING)
+    option = models.ForeignKey(Options, on_delete=DO_NOTHING)
     poll = models.ForeignKey(Polls, on_delete=DO_NOTHING)
     created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
