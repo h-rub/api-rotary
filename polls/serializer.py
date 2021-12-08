@@ -8,10 +8,11 @@ class PollsSerializer(serializers.ModelSerializer):
 
     created_by = serializers.SerializerMethodField('get_full_name')
     options = serializers.SerializerMethodField('get_options')
+    votes = serializers.SerializerMethodField('get_votes')
 
     class Meta:
         model = Polls
-        fields = ['pk', 'title', 'isClosed', 'created', 'modified', 'created_by', 'options']
+        fields = ['pk', 'title', 'isClosed', 'created', 'modified', 'created_by', 'options', 'votes']
 
     def get_full_name(self, Polls):
         _id = Polls.created_by.user.pk
