@@ -12,8 +12,8 @@ class PollsSerializer(serializers.ModelSerializer):
         model = Polls
         fields = ['pk', 'title', 'isClosed', 'created', 'modified', 'created_by']
 
-    def get_full_name(self, Post):
-        _id = Post.posted_by.user.pk
+    def get_full_name(self, Polls):
+        _id = Polls.created_by.user.pk
         user = CustomUser.objects.get(id=_id)
         full_name = str(user)
         return full_name
