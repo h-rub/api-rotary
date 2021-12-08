@@ -36,7 +36,7 @@ class SaveVote(APIView):
         poll = Polls.objects.get(pk=poll_id)
         option = Options.objects.get(pk = option_id)
         #is_liked = bool(request.data['is_completed'])
-        exists = Polls.objects.filter(voted_by = profile, poll = poll).exists()
+        exists = Vote.objects.filter(voted_by = profile, poll = poll).exists()
 
         if exists == True:
             return Response({"msg": "Vote already exists"}, status=status.HTTP_200_OK)
