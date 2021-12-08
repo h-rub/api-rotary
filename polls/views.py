@@ -30,11 +30,16 @@ class SaveVote(APIView):
     def post(self, request):
         poll_id = request.data['poll_id']
         voted_by = request.data['voted_by']
-        option_id = request.data['voto']
+        option_id = request.data['option']
         user = CustomUser.objects.get(pk=voted_by)
         profile = Profile.objects.get(user=user.pk)
         poll = Polls.objects.get(pk=poll_id)
         option = Options.objects.get(pk = option_id)
         #is_liked = bool(request.data['is_completed'])
-        created = Vote.objects.create(voted_by = profile, poll = poll, option = option)
-        return Response({"msg":f"Poll {poll_id} voted by {voted_by} - Voto: {option}"}, status=status.HTTP_200_OK)
+        exists = Polls.objects.filter(voted_by = profile, poll = poll).exists()
+
+        if exists == True:
+            return Response({"msg": "Vote already exists"}, status=status.HTTP_200_OK)
+        else:
+            created = Vote.objects.create(voted_by = profile, poll = poll, option = option)
+            return Response({"msg":f"Poll {poll_id} voted by {voted_by} - Voto: {option}"}, status=status.HTTP_200_OK)
