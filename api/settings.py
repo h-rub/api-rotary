@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'authentication',
     'tasks',
     'myclub',
+    'polls'
 ]
 
 REST_FRAMEWORK = {
