@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from authentication.models import CustomUser
-from polls.models import Polls
+from polls.models import Options, Polls
 
 from datetime import datetime
 
@@ -22,6 +22,6 @@ class PollsSerializer(serializers.ModelSerializer):
     def get_options(self, Polls):
         _id = Polls.pk
         poll = Polls.__class__.objects.get(pk = _id)
-        option = Polls.__class__.objects.all().filter(poll = poll)
+        option = Options.__class__.objects.all().filter(poll = poll)
         data = {"id_pk": _id, "options": poll}
         return data
