@@ -1,5 +1,10 @@
 from rest_framework import serializers
-from myclub.models import Comment, Post, Like
-from authentication.models import CustomUser, Profile
+from polls.models import Polls
 
 from datetime import datetime
+
+class PollsSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Polls
+        fields = "__all__"
