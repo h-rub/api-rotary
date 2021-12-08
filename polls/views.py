@@ -8,7 +8,7 @@ from rest_framework.views import APIView
 from rest_framework.viewsets import ModelViewSet
 from authentication.models import CustomUser, Profile
 
-from polls.models import Polls, Vote
+from polls.models import Options, Polls, Vote
 from polls.serializer import PollsSerializer
 
 # Create your views here.
@@ -30,10 +30,11 @@ class SaveVote(APIView):
     def post(self, request):
         poll_id = request.data['poll_id']
         voted_by = request.data['voted_by']
-        voto = request.data['voto']
+        option_id = request.data['voto']
         user = CustomUser.objects.get(pk=voted_by)
         profile = Profile.objects.get(user=user.pk)
         poll = Polls.objects.get(pk=poll_id)
+        option = Options.objects.get(pk = option_id)
         #is_liked = bool(request.data['is_completed'])
-        created = Vote.objects.create(voted_by = profile, poll = poll, option = voto)
-        return Response({"msg":f"Poll {poll_id} voted by {voted_by} - Voto: {voto}"}, status=status.HTTP_200_OK)
+        created = Vote.objects.create(voted_by = profile, poll = poll, option = option)
+        return Response({"msg":f"Poll {poll_id} voted by {voted_by} - Voto: {option}"}, status=status.HTTP_200_OK)
