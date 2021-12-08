@@ -16,6 +16,9 @@ class Polls(models.Model):
 class Options(models.Model):
     poll = models.ForeignKey(Polls, on_delete=DO_NOTHING)
     option = models.CharField(max_length=400, blank=True)
+    
+    def __str__(self):
+        return f"{self.option}"
 
 class Vote(models.Model):
     voted_by = models.ForeignKey(Profile, on_delete=DO_NOTHING)
@@ -23,3 +26,6 @@ class Vote(models.Model):
     poll = models.ForeignKey(Polls, on_delete=DO_NOTHING)
     created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return f"{self.voted_by} - {self.option}"
